@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Stock.ly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../stockly_frontend/script-dashboard.js">
+    <link rel="stylesheet" href="../stockly_frontend/dashboard.css">
+    <link rel="stylesheet" href="../stockly_frontend/producto.css">
+    <link rel="stylesheet" href="../stockly_frontend/ordenes.css">
+    <link rel="stylesheet" href="../stockly_frontend/proveedores.css">
+    <link rel="stylesheet" href="../stockly_frontend/reportes.css">
+  <!-- Incluir Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <div class="logo-container">
+      <img src="imagenes/Logo stockly (1).png" alt="Stockly Logo" class="logo">
+      <div class="brand-name">STOCK.LY</div>
+    </div>
+    
+    <a href="dashboard.html" class="menu-item active" data-section="menu">
+      <img src="iconos/menu.svg" alt="Home Icon"> Menu
+    </a>
+    
+    <a href="producto.html" class="menu-item" data-section="inventario">
+      <img src="iconos/inventario.svg" alt="Inventario Icon"> inventario
+    </a>
+    
+    <a href="reportes.html" class="menu-item" data-section="reportes">
+      <img src="iconos/reporte.svg" alt="Reports Icon"> Reportes
+    </a>
+    
+    <a href="proveedores.html" class="menu-item" data-section="proveedores">
+      <img src="iconos/proveedores.svg" alt="Suppliers Icon"> Proveedores
+    </a>
+    
+    <a href="ordenes.html" class="menu-item" data-section="ordenes">
+      <img src="iconos/ordenes.svg" alt="Orders Icon"> Ordenes
+    </a>
+    
+    <div class="menu-divider"></div>
+    
+    <a href="ajustes.html" class="menu-item" data-section="ajustes">
+      <img src="iconos/ajustes.svg" alt="Settings Icon"> Ajustes
+    </a>
+    
+    <button id="logout-btn" class="menu-item" data-section="cerrar" style="background:none;border:none;width:100%;text-align:left;cursor:pointer;">
+      <img src="iconos/cerrar sesion.svg" alt="Logout Icon"> Cerrar sesión
+    </button>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      const logoutBtn = document.getElementById('logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+        // Aquí puedes limpiar el almacenamiento local/session y redirigir al login
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href = 'inicio_de_sesion.html'; // Redirigir al inicio de sesión
+        });
+      }
+      });
+    </script>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Header Bar -->
+    <div class="header-bar">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Buscar">
+        <img src="iconos/buscar.svg" alt="Buscar" class="search-icon">
+      </div>
+       
+      <div class="user-profile">
+        <div class="notification-icon">
+          <img src="iconos/notificacion.svg" alt="Notifications">
+        </div>
+<a href="ajustes.html">
+  <img src="iconos/foto de perfil.png" alt="Ajustes Icon" class="profile-pic" />
+</a>
+      </div>
+    </div>
+
+    <!-- Dashboard Grid -->
+    <div class="dashboard-grid">
+      <!-- Ventas Card -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <h2 class="card-title">Resumen de Ventas</h2>
+        </div>
+        
+        <div class="stats-grid">
+          <div class="stat-item">
+            <img src="iconos/ventas.svg" alt="Ventas Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Ventas</div>
+          </div>
+          
+          <div class="stat-item">
+            <img src="iconos/ingresos.svg" alt="Ingresos Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Ingresos</div>
+            </div>
+            
+            <div class="stat-item">
+            <img src="iconos/reporte.svg" alt="Beneficios Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Beneficios</div>
+            </div>
+            
+            <div class="stat-item">
+            <img src="iconos/costos.svg" alt="Costos Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Costos</div>
+            </div>
+          </div>
+          </div>
+
+          <!-- Inventario Card -->
+          <div class="dashboard-card">
+          <div class="card-header">
+            <h2 class="card-title">Resumen de Inventario</h2>
+            <a href="producto.html" class="card-action inventario-link">Ver más</a>
+          </div>
+          
+          <div class="stats-grid inventory-grid">
+            <div class="stat-item">
+            <img src="iconos/ordenes.svg" alt="Disponible Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Cantidad Disponible</div>
+            </div>
+            
+            <div class="stat-item">
+            <img src="iconos/por recibir.svg" alt="Por recibir Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Por recibir</div>
+            </div>
+          </div>
+          </div>
+
+          <!-- Compras Card -->
+          <div class="dashboard-card">
+          <div class="card-header">
+            <h2 class="card-title">Resumen de Compras</h2>
+          </div>
+          
+          <div class="stats-grid">
+            <div class="stat-item">
+            <img src="iconos/compras.svg" alt="Compras Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Compras</div>
+            </div>
+            
+            <div class="stat-item">
+            <img src="iconos/costos.svg" alt="Costos Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Costos</div>
+            </div>
+            
+            <div class="stat-item">
+            <img src="iconos/cancelado.svg" alt="Cancelados Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Cancelados</div>
+            </div>
+            
+            <div class="stat-item">
+            <img src="iconos/regresado.svg" alt="Regresos Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Regresos</div>
+            </div>
+          </div>
+          </div>
+
+      <!-- Productos Card -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <h2 class="card-title">Resumen de Productos</h2>
+        </div>
+        
+        <div class="stats-grid products-grid">
+          <div class="stat-item">
+            <img src="iconos/proveedores.svg" alt="Proveedores Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Número de Proveedores</div>
+          </div>
+          
+          <div class="stat-item">
+            <img src="iconos/numero de categorias.svg" alt="Categorías Icon" class="stat-icon">
+            <div class="stat-value"></div>
+            <div class="stat-label">Número de Categorías</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ventas y Compras Chart -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <h2 class="card-title">Ventas y Compras</h2>
+          <div class="chart-period-selector">
+            <button class="chart-toggle active" data-period="semanal">
+              <img src="iconos/calendario.svg" alt="Calendar Icon"> Semanal
+            </button>
+            <button class="chart-toggle" data-period="mensual">
+              <img src="iconos/calendario.svg" alt="Calendar Icon"> Mensual
+            </button>
+          </div>
+        </div>
+        
+        <div class="chart-container">
+          <canvas id="ventas-compras-chart"></canvas>
+        </div>
+        
+        <div class="chart-legend">
+          <div class="legend-item">
+            <div class="legend-color compras"></div>
+            <span>Compras</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color ventas"></div>
+            <span>Ventas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ordenes Chart -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <h2 class="card-title">Resumen de Ordenes</h2>
+        </div>
+        
+        <div class="chart-container">
+          <canvas id="ordenes-chart"></canvas>
+        </div>
+        
+        <div class="chart-legend">
+          <div class="legend-item">
+            <div class="legend-color ordenado"></div>
+            <span>Ordenado</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color entregado"></div>
+            <span>Entregado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stock más vendido Table (dinámico) -->
+      <div class="dashboard-card" id="stock-mas-vendido-card">
+        <div class="card-header">
+          <h2 class="card-title">Stock más vendido</h2>
+          <a href="producto.html" class="card-action inventario-link">Ver más</a>
+        </div>
+        <div class="table-container">
+          <table id="stock-mas-vendido-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cantidad Vendida</th>
+            <th>Cantidad Restante</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filas generadas dinámicamente -->
+        </tbody>
+          </table>
+        </div>
+      </div>
+      <script>
+        // Ejemplo: obtener productos de localStorage (de producto.html)
+        document.addEventListener('DOMContentLoaded', function() {
+          // Supón que producto.html guarda productos en localStorage bajo 'productos'
+          const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+          // Ordenar por cantidad vendida (de mayor a menor)
+          productos.sort((a, b) => (b.cantidadVendida || 0) - (a.cantidadVendida || 0));
+          // Tomar los 3 más vendidos
+          const topVendidos = productos.slice(0, 3);
+          const tbody = document.querySelector('#stock-mas-vendido-table tbody');
+          tbody.innerHTML = '';
+          topVendidos.forEach(prod => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${prod.nombre || ''}</td>
+          <td>${prod.cantidadVendida || 0}</td>
+          <td>${prod.cantidadRestante || 0}</td>
+          <td>₹ ${prod.precio || 0}</td>
+        `;
+        tbody.appendChild(tr);
+          });
+        });
+      </script>
+
+      <!-- Baja Cantidad de Stock (dinámico) -->
+      <div class="dashboard-card" id="baja-cantidad-stock-card">
+        <div class="card-header">
+          <h2 class="card-title">Baja Cantidad de Stock</h2>
+          <a href="producto.html" class="card-action inventario-link">Ver más</a>
+        </div>
+        <div class="product-list" id="baja-cantidad-product-list">
+          <!-- Productos con bajo stock generados dinámicamente -->
+        </div>
+      </div>
+      <script>
+        // Mostrar productos con bajo stock usando datos de localStorage (de producto.html)
+        document.addEventListener('DOMContentLoaded', function() {
+          const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+          // Definir el umbral de bajo stock (puedes ajustar este valor)
+          const UMBRAL_BAJO_STOCK = 15;
+          // Filtrar productos con cantidadRestante <= umbral
+          const bajos = productos.filter(p => (p.cantidadRestante || 0) <= UMBRAL_BAJO_STOCK);
+          const list = document.getElementById('baja-cantidad-product-list');
+          list.innerHTML = '';
+          bajos.forEach(prod => {
+        const div = document.createElement('div');
+        div.className = 'product-item';
+        div.innerHTML = `
+          <img src="${prod.imagen || 'assets/products/default.png'}" alt="${prod.nombre || ''}" class="product-image">
+          <div class="product-details">
+            <div class="product-name">${prod.nombre || ''}</div>
+            <div class="product-stock">Cantidad Restante: ${prod.cantidadRestante || 0} ${prod.unidad || ''}</div>
+          </div>
+          <button class="stock-action">Bajo</button>
+        `;
+        list.appendChild(div);
+          });
+        });
+      </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript para la interactividad -->
+  <script src="script-dashboard.js"></script>
+</body>
+</html>

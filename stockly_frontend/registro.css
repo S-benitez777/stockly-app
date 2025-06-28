@@ -1,0 +1,228 @@
+/* Variables globales */
+:root {
+    --color-primary: #a2de3f;
+    --color-primary-hover: #93c938;
+    --color-secondary: #3d7a9a;
+    --color-text-dark: #222222;
+    --color-text-light: #667085;
+    --color-background: #ffffff;
+    --color-navbar: #222222;
+    --color-input-border: #d0d5dd;
+    --font-main: 'Inter', sans-serif;
+    --font-logo: 'MuseoModerno', sans-serif;
+  }
+
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-main);
+    background-color: var(--color-background);
+    color: var(--color-text-dark);
+    line-height: 1.5;
+  }
+
+  /* Barra de navegación */
+  .navbar {
+    position: relative;
+    background-color: var(--color-navbar);
+    height: 60px;
+    width: 100%;
+  }
+
+  .navbar-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  .navbar-title {
+    color: #ccc;
+    font-family: var(--font-main);
+    font-size: 16px;
+    font-weight: 400;
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .navbar-brand {
+    color: var(--color-primary);
+    font-family: var(--font-logo);
+    font-size: 24px;
+    font-weight: 500;
+    text-decoration: none;
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* Contenido principal */
+  .page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px);
+  }
+
+  .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 80px;
+  }
+
+  /* Columna del logo */
+  .logo-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Contenedor del logo grande con imagen de fondo */
+  .logo-container {
+    width: 240px;
+    height: 240px;
+    background-image: url('imagenes/Logo stockly (1).png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .logo-text {
+    font-family: var(--font-logo), sans-serif;
+    color: var(--color-secondary);
+    font-size: 42px;
+    font-weight: 600;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  /* Columna del formulario */
+  .form-column {
+    width: 360px;
+  }
+
+  /* Logo pequeño en el formulario con imagen de fondo */
+  .form-logo {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    background-image: url('imagenes/Logo stockly (1).png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .form-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-text-dark);
+  }
+
+  .form-subtitle {
+    font-size: 16px;
+    color: var(--color-text-light);
+    font-weight: normal;
+  }
+
+  /* Formulario */
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-dark);
+  }
+
+  .form-control {
+    height: 44px;
+    padding: 10px 14px;
+    border: 1px solid var(--color-input-border);
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .password-hint {
+    font-size: 12px;
+    color: var(--color-text-light);
+    margin-top: 4px;
+  }
+
+  .btn-register {
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .btn-register:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  .signin-option {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .signin-text {
+    color: var(--color-text-light);
+  }
+
+  .btn-signin {
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .btn-signin:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .main-container {
+      flex-direction: column;
+      gap: 40px;
+    }
+    
+    .logo-container {
+      width: 180px;
+      height: 180px;
+    }
+  }

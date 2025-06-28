@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil - Stock.ly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="producto.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="ajustes.css">
+  <!-- Incluir Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <div class="logo-container">
+      <img src="imagenes/Logo stockly (1).png" alt="Stockly Logo" class="logo">
+      <div class="brand-name">STOCK.LY</div>
+    </div>
+    
+    <a href="dashboard.html" class="menu-item" data-section="menu">
+      <img src="iconos/menu.svg" alt="Home Icon"> Menu
+    </a>
+    
+    <a href="producto.html" class="menu-item" data-section="inventario">
+      <img src="iconos/inventario.svg" alt="Inventario Icon"> Inventario
+    </a>
+    
+    <a href="reportes.html" class="menu-item" data-section="reportes">
+      <img src="iconos/reporte.svg" alt="Reports Icon"> Reportes
+    </a>
+    
+    <a href="proveedores.html" class="menu-item" data-section="proveedores">
+      <img src="iconos/proveedores.svg" alt="Suppliers Icon"> Proveedores
+    </a>
+    
+    <a href="ordenes.html" class="menu-item" data-section="ordenes">
+      <img src="iconos/ordenes.svg" alt="Orders Icon"> Ordenes
+    </a>
+    
+    <div class="menu-divider"></div>
+    
+    <a href="#" class="menu-item active" data-section="ajustes">
+      <img src="iconos/ajustes.svg" alt="Settings Icon"> Ajustes
+    </a>
+    
+    <a href="inicio_de_sesion.html" class="menu-item" data-section="cerrar">
+      <img src="iconos/cerrar sesion.svg" alt="Logout Icon"> Cerrar sesión
+    </a>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Header Bar -->
+    <div class="header-bar">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Buscar">
+        <img src="iconos/buscar.svg" alt="Buscar" class="search-icon">
+      </div>
+       
+      <div class="user-profile">
+        <div class="notification-icon">
+          <img src="iconos/notificacion.svg" alt="Notifications">
+        </div>
+        <img src="iconos/foto de perfil.png" alt="Profile" class="profile-pic">
+      </div>
+    </div>
+
+    <!-- Profile Content -->
+    <div class="profile-container">
+      <div class="profile-card">
+        <h2 class="card-title">Editar Perfil</h2>
+        
+        <div class="profile-content">
+          <div class="profile-image-section">
+            <div class="profile-image-container">
+              <img src="iconos/foto de perfil.png" alt="Foto de perfil" class="large-profile-pic">
+            </div>
+            <a href="#" class="edit-photo-link">Editar o Examinar foto</a>
+          </div>
+          
+          <div class="profile-details">
+            <div class="profile-info">
+              <div class="info-field">
+                <span class="field-label">Nombre Completo:</span>
+                <div class="editable-field">
+                  <span class="field-value" data-field="nombre">Fulanito Rodriguez Perez</span>
+                  <button class="edit-btn"><img src="iconos/editar.svg" alt="Editar" class="edit-icon"></button>
+                </div>
+              </div>
+              
+              <div class="info-field">
+                <span class="field-label">Correo Electrónico:</span>
+                <div class="editable-field">
+                  <span class="field-value" data-field="correo">FulanitoRP@gmail.com</span>
+                  <button class="edit-btn"><img src="iconos/editar.svg" alt="Editar" class="edit-icon"></button>
+                </div>
+              </div>
+              
+              <div class="info-field">
+                <span class="field-label">Contraseña:</span>
+                <span class="field-value password-value">1234567890</span>
+              </div>
+              
+              <div class="change-password">
+                <a href="#" class="change-password-link">¿Desea cambiar la contraseña?</a>
+              </div>
+            </div>
+            
+            <div class="save-button-container">
+              <button class="save-changes-btn">Guardar cambios</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="additional-settings-card">
+        <h2 class="card-title">Ajustes Adicionales</h2>
+        
+        <div class="additional-settings-content">
+          <a href="inicio_de_sesion.html" class="settings-link logout-link" onclick="window.location.href='inicio_de_sesion.html'; return false;">Cerrar Sesión</a>
+          <a href="#" class="settings-link delete-link">Eliminar Cuenta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="ajustes.js"></script>
+</body>
+</html>

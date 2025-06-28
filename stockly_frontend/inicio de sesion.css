@@ -1,0 +1,305 @@
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Barra de navegación */
+.navbar {
+  height: 60px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+}
+
+.navbar-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #000000;
+  z-index: -1;
+}
+
+.navbar-brand {
+  color: #a9e04b;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-right: 20px;
+}
+
+/* Contenido principal */
+.page-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  height: 80vh;
+}
+
+/* Columna del logo */
+.logo-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container {
+  width: 260px;
+  height: 260px;
+  background-color: #a9e04b;
+  position: relative;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container::before {
+  content: "S";
+  position: absolute;
+  color: #ffffff;
+  font-size: 160px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  transform: translateY(-5%);
+}
+
+.logo-container::after {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  background-color: #3d7797;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  z-index: -1;
+}
+
+.logo-text {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #3d7797;
+  margin-top: 20px;
+  letter-spacing: 1px;
+}
+
+/* Columna del formulario */
+.form-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+}
+
+.form-logo {
+  width: 60px;
+  height: 60px;
+  background-color: #a9e04b;
+  position: relative;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-logo::before {
+  content: "S";
+  position: absolute;
+  color: #ffffff;
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  transform: translateY(-5%);
+}
+
+.form-logo::after {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  background-color: #3d7797;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  z-index: -1;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.form-title {  
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.form-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.error-message {
+  color: #ff3333;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: center;
+  min-height: 20px;
+}
+
+/* Formulario */
+.login-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-control:focus {
+  border-color: #a9e04b;
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: #aaa;
+}
+
+/* Opciones del formulario */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.remember-me input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.forgot-password {
+  color: #3d7797;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Botones */
+.btn-signin {
+  width: 100%;
+  background-color: #a9e04b;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+}
+
+.btn-signin:hover {
+  background-color: #98cc3e;
+}
+
+/* Opción de registro */
+.signup-option {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.signup-text {
+  color: #666;
+  margin-right: 5px;
+}
+
+.btn-signup {
+  color: #3d7797;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-signup:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .main-container {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .logo-column {
+    padding: 40px 20px;
+  }
+  
+  .form-column {
+    padding: 40px 20px;
+  }
+  
+  .logo-container {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .logo-container::before {
+    font-size: 120px;
+  }
+}

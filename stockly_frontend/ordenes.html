@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ordenes - Stock.ly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="producto.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="ordenes.css">
+  <!-- Incluir Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <div class="logo-container">
+      <img src="imagenes/Logo stockly (1).png" alt="Stockly Logo" class="logo">
+      <div class="brand-name">STOCK.LY</div>
+    </div>
+   
+    <a href="dashboard.html" class="menu-item" data-section="menu">
+      <img src="iconos/menu.svg" alt="Home Icon"> Menu
+    </a>
+   
+    <a href="producto.html" class="menu-item" data-section="inventario">
+      <img src="iconos/inventario.svg" alt="Inventario Icon"> Inventario
+    </a>
+   
+    <a href="reportes.html" class="menu-item" data-section="reportes">
+      <img src="iconos/reporte.svg" alt="Reports Icon"> Reportes
+    </a>
+   
+    <a href="proveedores.html" class="menu-item" data-section="proveedores">
+      <img src="iconos/proveedores.svg" alt="Suppliers Icon"> Proveedores
+    </a>
+   
+    <a href="ordenes.html" class="menu-item active" data-section="ordenes">
+      <img src="iconos/ordenes.svg" alt="Orders Icon"> Ordenes
+    </a>
+   
+    <div class="menu-divider"></div>
+   
+    <a href="ajustes.html" class="menu-item" data-section="ajustes">
+      <img src="iconos/ajustes.svg" alt="Settings Icon"> Ajustes
+    </a>
+   
+    <a href="#" class="menu-item" data-section="cerrar">
+      <img src="iconos/cerrar sesion.svg" alt="Logout Icon"> Cerrar sesión
+    </a>
+  </div>
+  
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Header Bar -->
+    <div class="header-bar">
+      <div class="search-container">
+        <img src="iconos/buscar.svg" alt="Buscar" class="search-icon">
+        <input type="text" class="search-input" placeholder="Buscar">
+      </div>
+       
+      <div class="user-profile">
+        <div class="notification-icon">
+          <img src="iconos/notificacion.svg" alt="Notifications">
+        </div>
+        <img src="iconos/foto de perfil.png" alt="Profile" class="profile-pic">
+      </div>
+    </div>
+    <!-- Orders Summary -->
+    <div class="summary-container">
+      <div class="summary-header">Resumen de Ordenes</div>
+      
+      <div class="summary-stats">
+      <div class="stat-item">
+        <div class="stat-label">Ordenes Totales</div>
+        <div class="stat-value"></div>
+        <div class="stat-period">Últimos 7 días</div>
+      </div>
+      
+      <div class="stat-item">
+        <div class="stat-label">Total de recibidos</div>
+        <div class="stat-value"></div>
+        <div class="stat-period">Últimos 7 días</div>
+        <div class="stat-amount income"></div>
+        <div class="stat-type">Ingresos</div>
+      </div>
+      
+      <div class="stat-item">
+        <div class="stat-label">Total de regresos</div>
+        <div class="stat-value"></div>
+        <div class="stat-period">Últimos 7 días</div>
+        <div class="stat-amount cost"></div>
+        <div class="stat-type">Costo</div>
+      </div>
+      
+      <div class="stat-item">
+        <div class="stat-label">En camino</div>
+        <div class="stat-value"></div>
+        <div class="stat-period">Ordenado</div>
+        <div class="stat-amount cost"></div>
+        <div class="stat-type">Costo</div>
+      </div>
+      </div>
+    </div>
+
+    <!-- Orders Section -->
+    <div class="orders-container">
+      <div class="orders-header">
+        <div class="orders-title">Ordenes</div>
+        <div class="orders-actions">
+          <button class="btn btn-primary" id="addOrderBtn">Agregar orden</button>
+          <button class="btn btn-outline" id="filterBtn">
+            <img src="iconos/filtro.svg" alt="Filter" class="filter-icon">
+            Filtros
+          </button>
+          <select class="status-filter">
+            <option value="">Estado de orden</option>
+            <option value="confirmado">Confirmado</option>
+            <option value="retrasado">Retrasado</option>
+            <option value="entrega">En entrega</option>
+            <option value="regresado">Regresado</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="orders-table">
+        <div class="table-header">
+          <div class="header-cell">Productos</div>
+          <div class="header-cell">Valor de orden</div>
+          <div class="header-cell">Cantidad</div>
+          <div class="header-cell">ID de orden</div>
+          <div class="header-cell">Entrega esperada</div>
+          <div class="header-cell">Estado</div>
+        </div>
+        
+        <div class="table-content">
+          <!-- Order rows will be dynamically added here -->
+        </div>
+      </div>
+      
+      <!-- Pagination -->
+      <div class="pagination">
+        <button class="pagination-btn prev-btn">Previa</button>
+        <div class="pagination-info">Página 1 de 10</div>
+        <button class="pagination-btn next-btn">Siguiente</button>
+      </div>
+    </div>
+
+    <!-- New Order Modal -->
+    <div id="newOrderModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>New Order</h2>
+        </div>
+        <div class="modal-body">
+          <form id="newOrderForm">
+            <div class="form-group">
+              <label for="productName">Nombre producto</label>
+              <input type="text" id="productName" placeholder="Ingrese nombre de producto">
+            </div>
+            
+            <div class="form-group">
+              <label for="productId">ID de producto</label>
+              <input type="text" id="productId" placeholder="Ingrese ID de producto">
+            </div>
+            
+            <div class="form-group">
+              <label for="category">Categoría</label>
+              <select id="category">
+                <option value="">Seleccione categoría</option>
+                <option value="bebidas">Bebidas</option>
+                <option value="alimentos">Alimentos</option>
+                <option value="otros">Otros</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="orderValue">Valor de orden</label>
+              <input type="text" id="orderValue" placeholder="Ingrese valor de orden">
+            </div>
+            
+            <div class="form-group">
+              <label for="quantity">Cantidad</label>
+              <input type="number" id="quantity" placeholder="Ingrese cantidad de orden">
+            </div>
+            
+            <div class="form-group">
+              <label for="unit">Unidad</label>
+              <input type="text" id="unit" placeholder="Ingrese unidad de producto">
+            </div>
+            
+            <div class="form-group">
+              <label for="purchasePrice">Precio de compra</label>
+              <input type="text" id="purchasePrice" placeholder="Ingrese precio de compra">
+            </div>
+            
+            <div class="form-group">
+              <label for="deliveryDate">Fecha de entrega</label>
+              <input type="text" id="deliveryDate" placeholder="Ingrese fecha de entrega">
+            </div>
+            
+            <div class="form-group">
+              <input type="checkbox" id="notifyDelivery">
+              <label for="notifyDelivery">Notificar en la fecha de entrega</label>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" id="cancelOrderBtn" class="btn btn-outline">Descartar</button>
+              <button type="submit" class="btn btn-primary">Agregar orden</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="ordenes.js"></script>
+</body>
+</html>

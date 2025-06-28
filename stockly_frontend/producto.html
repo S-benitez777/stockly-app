@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Productos - Stock.ly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="producto.css" rel="stylesheet"/>
+  <link href="dashboard.css" rel="stylesheet"/>
+  <!-- Incluir Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <div class="logo-container">
+      <img alt="Stockly Logo" class="logo" src="imagenes/Logo stockly (1).png"/>
+      <div class="brand-name">STOCK.LY</div>
+    </div>
+    <a class="menu-item active" data-section="menu" href="dashboard.html">
+      <img alt="Home Icon" src="iconos/menu.svg"/> Menu
+    </a>
+    <a class="menu-item" data-section="inventario" href="producto.html">
+      <img alt="Inventario Icon" src="iconos/inventario.svg"/> Inventario
+    </a>
+    <a class="menu-item" data-section="reportes" href="reportes.html">
+      <img alt="Reports Icon" src="iconos/reporte.svg"/> Reportes
+    </a>
+    <a class="menu-item" data-section="proveedores" href="proveedores.html">
+      <img alt="Suppliers Icon" src="iconos/proveedores.svg"/> Proveedores
+    </a>
+    <a class="menu-item" data-section="ordenes" href="ordenes.html">
+      <img alt="Orders Icon" src="iconos/ordenes.svg"/> Ordenes
+    </a>
+    <div class="menu-divider"></div>
+    <a class="menu-item" data-section="ajustes" href="ajustes.html">
+      <img alt="Settings Icon" src="iconos/ajustes.svg"/> Ajustes
+    </a>
+    <a class="menu-item" data-section="cerrar" href="#">
+      <img alt="Logout Icon" src="iconos/cerrar sesion.svg"/> Cerrar sesión
+    </a>
+  </div>
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Header Bar -->
+    <div class="header-bar">
+      <div class="search-container">
+        <input class="search-input" placeholder="Buscar" type="text"/>
+        <img alt="Buscar" class="search-icon" src="iconos/buscar.svg"/>
+      </div>
+      <div class="user-profile">
+        <div class="notification-icon">
+          <img alt="Notifications" src="iconos/notificacion.svg"/>
+        </div>
+        <img alt="Profile" class="profile-pic" src="iconos/foto de perfil.png"/>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Resumen de Inventario Section -->
+      <section class="inventory-summary">
+        <h2>Resumen de Inventario</h2>
+        <div class="summary-cards">
+          <div class="card">
+            <div class="card-header"><h3>Categorías</h3></div>
+            <div class="card-content">
+              <p class="number categorias"></p>
+              <small>Últimos 7 días</small>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>Productos Totales</h3></div>
+            <div class="card-content">
+              <p class="number productos"></p>
+              <p class="value ingresos"></p>
+              <div class="card-footer">
+                <small>Últimos 7 días</small>
+                <small class="highlight">Ingresos</small>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>Mejores Vendidos</h3></div>
+            <div class="card-content">
+              <p class="number top-vendidos"></p>
+              <p class="value top-valor"></p>
+              <div class="card-footer">
+                <small>Últimos 7 días</small>
+                <small class="highlight">Costos</small>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>Poco Disponible</h3></div>
+            <div class="card-content">
+              <p class="number poco-disponible"></p>
+              <p class="value agotado"></p>
+              <div class="card-footer">
+                <small>Ordenado</small>
+                <small class="highlight">Sin Stock</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Products Section -->
+      <section class="products-section">
+        <div class="products-header">
+          <h2>Productos</h2>
+          <div class="actions">
+            <button class="btn btn-primary" id="add-product-btn">Agregar producto</button>
+            <button class="btn btn-outline" id="filter-btn">Filtro</button>
+            <button class="btn btn-outline" id="download-btn">Descargar</button>
+          </div>
+        </div>
+        <div class="products-table-container">
+          <table class="products-table" id="products-table">
+            <thead>
+              <tr>
+                <th>Productos</th>
+                <th>Precio de Compra</th>
+                <th>Cantidad</th>
+                <th>Cantidad Restante</th>
+                <th>Fecha de Vencimiento</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="products-body">
+              <!-- Los datos de la tabla se llenarán con JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- Filter Dropdown -->
+  <div class="dropdown-content" id="filter-dropdown">
+    <div class="filter-option">
+      <input class="estado-filter" id="filter-disponible" type="checkbox" value="Disponible"/>
+      <label for="filter-disponible">Disponible</label>
+    </div>
+    <div class="filter-option">
+      <input class="estado-filter" id="filter-poco-disponible" type="checkbox" value="Poco Disponible"/>
+      <label for="filter-poco-disponible">Poco Disponible</label>
+    </div>
+    <div class="filter-option">
+      <input class="estado-filter" id="filter-agotado" type="checkbox" value="Agotado"/>
+      <label for="filter-agotado">Agotado</label>
+    </div>
+  </div>
+  <!-- Add Product Modal -->
+  <div class="modal" id="add-product-modal">
+    <div class="modal-content">
+      <h2>Nuevo Producto</h2>
+      <form id="add-product-form">
+        <div class="form-group">
+          <label for="product-name">Nombre de producto</label>
+          <input id="product-name" placeholder="Ingrese el nombre del producto" required type="text"/>
+        </div>
+        <div class="form-group">
+          <label for="product-id">ID de producto</label>
+          <input id="product-id" placeholder="Ingrese el ID del producto" required type="text"/>
+        </div>
+        <div class="form-group">
+          <label for="product-category">Categoría</label>
+          <select id="product-category" required>
+            <option disabled selected value="">Seleccione la categoría</option>
+          </select>
+          <label for="product-supplier">Proveedor</label>
+          <select id="product-supplier" required>
+            <option disabled selected value="">Seleccione el proveedor</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="product-price">Precio de compra</label>
+          <input id="product-price" placeholder="Ingrese el precio de compra" required type="number"/>
+        </div>
+        <div class="form-group">
+          <label for="product-quantity">Cantidad</label>
+          <input id="product-quantity" placeholder="Ingrese la cantidad" required type="number"/>
+        </div>
+        <div class="form-group">
+          <label for="product-expiry">Fecha vencimiento</label>
+          <input id="product-expiry" placeholder="Ingrese la fecha de vencimiento" required type="text"/>
+        </div>
+        <div class="modal-buttons">
+          <button class="btn btn-outline" id="cancel-btn" type="button">Descartar</button>
+          <button class="btn btn-primary" type="submit">Agregar producto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="producto.js"></script>
+</body>
+</html>

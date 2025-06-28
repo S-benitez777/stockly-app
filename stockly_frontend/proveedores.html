@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proveedores - Stock.ly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="proveedores.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div class="sidebar">
+    <div class="logo-container">
+      <img src="imagenes/Logo stockly (1).png" alt="Stockly Logo" class="logo">
+      <div class="brand-name">STOCK.LY</div>
+    </div>
+    <a href="dashboard.html" class="menu-item" data-section="menu">
+      <img src="iconos/menu.svg" alt="Home Icon"> Menu
+    </a>
+    <a href="producto.html" class="menu-item" data-section="inventario">
+      <img src="iconos/inventario.svg" alt="Inventario Icon"> Inventario
+    </a>
+    <a href="reportes.html" class="menu-item" data-section="reportes">
+      <img src="iconos/reporte.svg" alt="Reports Icon"> Reportes
+    </a>
+    <a href="proveedores.html" class="menu-item active" data-section="proveedores">
+      <img src="iconos/proveedores.svg" alt="Suppliers Icon"> Proveedores
+    </a>
+    <a href="ordenes.html" class="menu-item" data-section="ordenes">
+      <img src="iconos/ordenes.svg" alt="Orders Icon"> Ordenes
+    </a>
+    <div class="menu-divider"></div>
+    <a href="ajustes.html" class="menu-item" data-section="ajustes">
+      <img src="iconos/ajustes.svg" alt="Settings Icon"> Ajustes
+    </a>
+    <a href="#" class="menu-item" data-section="cerrar">
+      <img src="iconos/cerrar sesion.svg" alt="Logout Icon"> Cerrar sesión
+    </a>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Header Bar -->
+    <div class="header-bar">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Buscar">
+        <img src="iconos/buscar.svg" alt="Buscar" class="search-icon">
+      </div>
+      <div class="user-profile">
+        <div class="notification-icon">
+          <img src="iconos/notificacion.svg" alt="Notifications">
+        </div>
+        <img src="iconos/foto de perfil.png" alt="Profile" class="profile-pic">
+      </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content-area">
+      <div class="proveedores-container">
+        <div class="proveedores-header">
+          <div class="section-title">Proveedores</div>
+          <div class="header-actions">
+            <button class="btn-primary" id="btn-agregar-proveedor">Agregar proveedor</button>
+          </div>
+        </div>
+
+        <!-- Tabla de Proveedores -->
+        <div class="table-header">
+          <div class="column-header">Nombre legal</div>
+          <div class="column-header">Nombre comercial</div>
+          <div class="column-header">Teléfono</div>
+          <div class="column-header">Email</div>
+          <div class="column-header">Días crédito</div>
+          <div class="column-header">Acciones</div>
+        </div>
+        <div class="table-body" id="proveedores-list">
+          <!-- Proveedores dinámicos serán insertados aquí por JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal funcional para agregar o editar proveedor -->
+  <div class="modal" id="modal-agregar-proveedor">
+    <div class="modal-content">
+      <div class="modal-body">
+        <input type="hidden" id="proveedor_id">
+
+        <div class="form-group">
+          <label for="nombre_legal">Nombre legal</label>
+          <input type="text" id="nombre_legal">
+        </div>
+        <div class="form-group">
+          <label for="nombre_comercial">Nombre comercial</label>
+          <input type="text" id="nombre_comercial">
+        </div>
+        <div class="form-group">
+          <label for="rfc">RFC</label>
+          <input type="text" id="rfc">
+        </div>
+        <div class="form-group">
+          <label for="direccion">Dirección</label>
+          <input type="text" id="direccion">
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" id="telefono">
+        </div>
+        <div class="form-group">
+          <label for="email_contacto">Email</label>
+          <input type="email" id="email_contacto">
+        </div>
+        <div class="form-group">
+          <label for="dias_credito">Días de crédito</label>
+          <input type="number" id="dias_credito">
+        </div>
+        <div class="form-group">
+          <label for="limite_credito">Límite de crédito</label>
+          <input type="number" id="limite_credito">
+        </div>
+        <div class="form-group">
+          <label for="esta_activo">Estado</label>
+          <select id="esta_activo">
+            <option value="1">Activo</option>
+            <option value="0">Inactivo</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-cancel" type="button">Cancelar</button>
+          <button class="btn-primary" id="btn-guardar" type="button">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="proveedores.js"></script>
+</body>
+</html>

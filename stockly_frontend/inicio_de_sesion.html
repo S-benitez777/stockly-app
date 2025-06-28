@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio de Sesión - Stock.ly</title>
+  <link rel="stylesheet" href="inicio de sesion.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<script src="validaciones.js" defer></script>
+</head>
+<body>
+  <!-- Barra de navegación superior -->
+  <div class="navbar">
+    <div class="navbar-background"></div>
+    <div class="navbar-brand">STOCK.LY</div>
+  </div>
+    
+  <div class="page-content">
+    <div class="main-container">
+      <div class="logo-column">
+        <div class="logo-container"></div>
+        <div class="logo-text">STOCK.LY</div>
+      </div>
+      <div class="form-column">
+        <div class="form-logo"></div>
+        <div class="form-header">
+          <h1 class="form-title">Accede a tu cuenta</h1>
+          <p class="form-subtitle">¡Bienvenido de nuevo! Ingrese sus datos, por favor</p>
+          <div id="mensaje-error" class="error-message" style="display:none;"></div>
+        </div>
+        <form class="login-form" id="loginForm" method="POST" action="../CRUD_Usuarios/inicio_de_sesion.php" autocomplete="off">
+          <div class="form-group">
+            <label for="username" class="form-label">Usuario</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Ingrese su usuario" required minlength="3" maxlength="50" autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Ingrese su contraseña" required minlength="6" maxlength="255" autocomplete="current-password">
+          </div>
+          <div class="form-options">
+            <div class="remember-me">
+              <input type="checkbox" id="remember" name="remember">
+              <label for="remember">Recordarme</label>
+            </div>
+            <a href="#" class="forgot-password">¿Olvidó su contraseña?</a>
+          </div>
+          <button type="submit" class="btn-signin">Iniciar sesión</button>
+          <div class="signup-option">
+            <span class="signup-text">¿No tiene una cuenta?</span>
+            <a href="registro.html" class="btn-signup">Registrarse</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const mensajeError = document.getElementById('mensaje-error');
+      mensajeError.textContent = '';
+      mensajeError.style.display = 'none';
+
+      if (!username || !password) {
+        mensajeError.textContent = 'Por favor, complete todos los campos.';
+        mensajeError.style.display = 'block';
+        e.preventDefault();
+        return;
+      }
+      if (username.length < 3) {
+        mensajeError.textContent = 'El usuario debe tener al menos 3 caracteres.';
+        mensajeError.style.display = 'block';
+        e.preventDefault();
+        return;
+      }
+      if (password.length < 6) {
+        mensajeError.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+        mensajeError.style.display = 'block';
+        e.preventDefault();
+        return;
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get('error');
+      const mensajeError = document.getElementById('mensaje-error');
+      if (error) {
+        let mensaje = '';
+        switch(error) {
+          case 'invalid_credentials':
+            mensaje = 'Usuario o contraseña incorrectos.';
+            break;
+          case 'empty_fields':
+            mensaje = 'Todos los campos son obligatorios.';
+            break;
+          case 'user_not_found':
+            mensaje = 'El usuario no existe.';
+            break;
+          default:
+            mensaje = 'Error en el inicio de sesión. Inténtelo de nuevo.';
+        }
+        mensajeError.textContent = mensaje;
+        mensajeError.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOCK.LY - Reportes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reportes.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <img src="imagenes/Logo stockly (1).png" alt="Stockly Logo" class="logo">
+            <div class="brand-name">STOCK.LY</div>
+        </div>
+
+        <a href="dashboard.html" class="menu-item">
+            <img src="iconos/menu.svg" alt="Home Icon"> Menu
+        </a>
+        <a href="producto.html" class="menu-item">
+            <img src="iconos/inventario.svg" alt="Inventario Icon"> Inventario
+        </a>
+        <a href="reportes.html" class="menu-item active">
+            <img src="iconos/reporte.svg" alt="Reports Icon"> Reportes
+        </a>
+        <a href="proveedores.html" class="menu-item">
+            <img src="iconos/proveedores.svg" alt="Suppliers Icon"> Proveedores
+        </a>
+        <a href="ordenes.html" class="menu-item">
+            <img src="iconos/ordenes.svg" alt="Orders Icon"> Ordenes
+        </a>
+
+        <div class="menu-divider"></div>
+
+        <a href="ajustes.html" class="menu-item">
+            <img src="iconos/ajustes.svg" alt="Settings Icon"> Ajustes
+        </a>
+        <a href="../CRUD_Usuarios/logout.php" class="menu-item">
+            <img src="iconos/cerrar sesion.svg" alt="Logout Icon"> Cerrar sesión
+        </a>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main-content">
+
+        <!-- HEADER -->
+        <div class="header-bar">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar">
+                <img src="iconos/buscar.svg" alt="Buscar" class="search-icon">
+            </div>
+            <div class="user-profile">
+                <div class="notification-icon">
+                    <img src="iconos/notificacion.svg" alt="Notificaciones">
+                </div>
+                <img src="iconos/foto de perfil.png" alt="Perfil" class="profile-pic">
+            </div>
+        </div>
+
+        <div class="dashboard">
+
+            <!-- BOTONES DE ACCIONES -->
+            <div style="margin-bottom: 15px;">
+                <button class="add-button" onclick="abrirModal()">+ Agregar Reporte</button>
+
+                <label for="filtro-tipo">Filtrar por tipo:</label>
+                <select id="filtro-tipo" onchange="filtrarPorTipo(this.value)">
+                    <option value="">Todos</option>
+                    <option value="mensual">Mensual</option>
+                    <option value="anual">Anual</option>
+                    <option value="trimestral">Trimestral</option>
+                    <option value="personalizado">Personalizado</option>
+                </select>
+
+                <button class="action-button" onclick="exportarPDF()">Exportar PDF</button>
+            </div>
+
+            <!-- TABLA CRUD DE REPORTES -->
+            <div class="card full-width">
+                <div class="card-header">
+                    <h2>Gestión de Reportes</h2>
+                </div>
+                <table class="data-table tabla-reportes">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tipo</th>
+                            <th>Total (€)</th>
+                            <th>Cantidad</th>
+                            <th>Mejor Vendido</th>
+                            <th>Menos Vendido</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí JS insertará los datos -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CREAR/EDITAR REPORTE -->
+    <div id="modal-reporte" class="modal hidden">
+        <div class="modal-content">
+            <h3 id="modal-titulo">Nuevo Reporte</h3>
+            <form id="form-reporte">
+                <input type="hidden" name="id_reporte" id="id_reporte">
+
+                <label>Tipo de Reporte:
+                    <select name="tipo_reporte" id="tipo_reporte" required>
+                        <option value="mensual">Mensual</option>
+                        <option value="anual">Anual</option>
+                        <option value="trimestral">Trimestral</option>
+                        <option value="personalizado">Personalizado</option>
+                    </select>
+                </label>
+
+                <label>Ventas Totales (€):
+                    <input type="number" name="ventas_totales" id="ventas_totales" step="0.01" required>
+                </label>
+
+                <label>Cantidad de Ventas:
+                    <input type="number" name="cantidad_ventas" id="cantidad_ventas" required>
+                </label>
+
+                <label>Mejor Vendido:
+                    <input type="text" name="mejor_vendido" id="mejor_vendido" required>
+                </label>
+
+                <label>Menos Vendido:
+                    <input type="text" name="menos_vendido" id="menos_vendido" required>
+                </label>
+
+                <div class="modal-actions">
+                    <button type="submit" class="add-button">Guardar</button>
+                    <button type="button" onclick="cerrarModal()" class="action-button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="script-reportes.js"></script>
+</body>
+</html>
